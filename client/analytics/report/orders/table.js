@@ -33,6 +33,7 @@ import './style.scss';
 
 const ORDERS_TABLE_HEADERS = 'woocommerce-orders-table-headers';
 const ORDERS_TABLE_DATA = 'woocommerce-orders-table-data';
+const ORDERS_TABLE_ROWS = 'woocommerce-orders-table-rows';
 
 class OrdersReportTable extends Component {
 	constructor( props ) {
@@ -115,8 +116,9 @@ class OrdersReportTable extends Component {
 				shipping_total,
 				discount_total,
 			} = row;
+			const customData = applyFilters( ORDERS_TABLE_DATA, false, row );
 
-			return {
+			const tableData = {
 				date: date_created,
 				id,
 				status,
@@ -129,6 +131,7 @@ class OrdersReportTable extends Component {
 					total - total_tax - shipping_total - discount_total
 				),
 			};
+			return customData ? Object.assign( tableData, customData ) : tableData;
 		} );
 	}
 
@@ -136,7 +139,6 @@ class OrdersReportTable extends Component {
 		const { query } = this.props;
 		const currentInterval = getIntervalForQuery( query );
 		const { tableFormat } = getDateFormatsForInterval( currentInterval );
-
 		return map( tableData, row => {
 			const {
 				date,
@@ -164,7 +166,7 @@ class OrdersReportTable extends Component {
 				href: 'edit.php?s=' + coupon.code + '&post_type=shop_coupon',
 			} ) );
 
-			const customRowData = applyFilters( ORDERS_TABLE_DATA, false );
+			const customRowData = applyFilters( ORDERS_TABLE_ROWS, false, row );
 
 			const rowData = [
 				{
