@@ -31,9 +31,9 @@ import { QUERY_DEFAULTS } from 'store/constants';
 import { getReportChartData, getFilterQuery } from 'store/reports/utils';
 import './style.scss';
 
-const ORDERS_TABLE_HEADERS = 'woocommerce-orders-table-headers';
-const ORDERS_TABLE_DATA = 'woocommerce-orders-table-data';
-const ORDERS_TABLE_ROWS = 'woocommerce-orders-table-rows';
+const HEADERS_FILTER = 'woocommerce-orders-table-headers';
+const DATA_FILTER = 'woocommerce-orders-table-data';
+const ROWS_FILTER = 'woocommerce-orders-table-rows';
 
 class OrdersReportTable extends Component {
 	constructor( props ) {
@@ -41,7 +41,7 @@ class OrdersReportTable extends Component {
 	}
 
 	getHeadersContent() {
-		const customHeaders = applyFilters( ORDERS_TABLE_HEADERS, false );
+		const customHeaders = applyFilters( HEADERS_FILTER, false );
 
 		const headers = [
 			{
@@ -116,7 +116,7 @@ class OrdersReportTable extends Component {
 				shipping_total,
 				discount_total,
 			} = row;
-			const customData = applyFilters( ORDERS_TABLE_DATA, false, row );
+			const customData = applyFilters( DATA_FILTER, false, row );
 
 			const tableData = {
 				date: date_created,
@@ -166,7 +166,7 @@ class OrdersReportTable extends Component {
 				href: 'edit.php?s=' + coupon.code + '&post_type=shop_coupon',
 			} ) );
 
-			const customRowData = applyFilters( ORDERS_TABLE_ROWS, false, row );
+			const customRowData = applyFilters( ROWS_FILTER, false, row );
 
 			const rowData = [
 				{
