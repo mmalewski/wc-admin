@@ -13,19 +13,19 @@ import { get, map, orderBy } from 'lodash';
 /**
  * WooCommerce dependencies
  */
-import { Link, OrderStatus, TableCard, ViewMoreList } from '@woocommerce/components';
-import { formatCurrency, getCurrencyFormatDecimal } from '@woocommerce/currency';
 import {
 	appendTimestamp,
 	getCurrentDates,
 	getIntervalForQuery,
 	getDateFormatsForInterval,
 } from '@woocommerce/date';
+import { Link, OrderStatus, TableCard, ViewMoreList } from '@woocommerce/components';
+import { formatCurrency, getCurrencyFormatDecimal } from '@woocommerce/currency';
+import { getAdminLink, onQueryChange } from '@woocommerce/navigation';
 
 /**
  * Internal dependencies
  */
-import { getAdminLink, onQueryChange } from 'lib/nav-utils';
 import ReportError from 'analytics/components/report-error';
 import { QUERY_DEFAULTS } from 'store/constants';
 import { getReportChartData, getFilterQuery } from 'store/reports/utils';
@@ -36,10 +36,6 @@ const DATA_FILTER = 'woocommerce-orders-table-data';
 const ROWS_FILTER = 'woocommerce-orders-table-rows';
 
 class OrdersReportTable extends Component {
-	constructor( props ) {
-		super( props );
-	}
-
 	getHeadersContent() {
 		const customHeaders = applyFilters( HEADERS_FILTER, false );
 
