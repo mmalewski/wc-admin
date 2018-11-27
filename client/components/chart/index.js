@@ -2,7 +2,7 @@
 /**
  * External dependencies
  */
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import classNames from 'classnames';
 import { Component, createRef, Fragment } from '@wordpress/element';
 import { decodeEntities } from '@wordpress/html-entities';
@@ -13,6 +13,7 @@ import { IconButton, NavigableMenu, SelectControl } from '@wordpress/components'
 import { interpolateViridis as d3InterpolateViridis } from 'd3-scale-chromatic';
 import PropTypes from 'prop-types';
 import { withViewportMatch } from '@wordpress/viewport';
+import { D3Chart, D3Legend } from 'react-d3-chart';
 
 /**
  * WooCommerce dependencies
@@ -24,8 +25,6 @@ import { H, Section } from '@woocommerce/components';
  * Internal dependencies
  */
 import './style.scss';
-import D3Chart from 'components/d3chart';
-import Legend from 'components/d3chart/legend';
 import ChartPlaceholder from './placeholder';
 
 d3FormatDefaultLocale( {
@@ -235,14 +234,14 @@ class Chart extends Component {
 
 		const chartHeight = this.getChartHeight();
 		const legend = (
-			<Legend
+			<D3Legend
 				colorScheme={ d3InterpolateViridis }
 				data={ orderedKeys }
 				handleLegendHover={ this.handleLegendHover }
 				handleLegendToggle={ this.handleLegendToggle }
 				legendDirection={ legendDirection }
-				itemsLabel={ itemsLabel }
-				valueType={ valueType }
+				legendValueFormat={ tooltipValueFormat }
+				totalLabel={ sprintf( itemsLabel, orderedKeys.length ) }
 			/>
 		);
 		const margin = {
