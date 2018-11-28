@@ -17,7 +17,7 @@ import { getNewPath, getPersistedQuery } from '@woocommerce/navigation';
  * Internal dependencies
  */
 import ReportTable from 'analytics/components/report-table';
-import { numberFormat } from '../../../lib/number';
+import { numberFormat } from 'lib/number';
 
 export default class VariationsReportTable extends Component {
 	constructor() {
