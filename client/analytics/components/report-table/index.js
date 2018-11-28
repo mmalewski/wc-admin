@@ -125,9 +125,8 @@ ReportTable.defaultProps = {
 export default compose(
 	withSelect( ( select, props ) => {
 		const { endpoint, query, tableQuery } = props;
-		// @TODO allow loading the primary data for the variations table once #926 is fixed.
-		const primaryData =
-			endpoint === 'variations' ? {} : getReportChartData( endpoint, 'primary', query, select );
+		const chartEndpoint = 'variations' === endpoint ? 'products' : endpoint;
+		const primaryData = getReportChartData( chartEndpoint, 'primary', query, select );
 		const tableData = getReportTableData( endpoint, query, select, tableQuery );
 
 		return {
