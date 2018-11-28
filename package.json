@@ -135,7 +135,7 @@
     "marked": "0.5.1",
     "qs": "^6.5.2",
     "react-click-outside": "3.0.1",
-    "react-d3-chart": "^1.0.3",
+    "react-d3-chart": "^1.0.4",
     "react-dates": "^18.0.4",
     "react-live": "1.12.0",
     "react-router-dom": "4.3.1",
